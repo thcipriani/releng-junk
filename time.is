@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#
+# time.is
+# =======
+#
+# Find the current time for a particular releng-er
+#
+# Copyright: 2019 Tyler Cipriani <tcipriani@wikimedia.org>
+# License: GPLv3+
+
+usage() {
+    cat <<HELP
+USAGE:
+
+    time.is [person]
+
+ARGUMENTS:
+
+    person - perl-compatible regex that matches either a person's name
+             or IRC nick
+HELP
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+RELENG_JSON="$DIR"/releng.json
+TZ=UTC
+
+if (( $# > 0 )); then
+    # First search for the person's name
+    NAME=$(jq -r '.[] | .name' "$RELENG_JSON" | grep -Pi "$@")
+    SELECT=name
+
+    # Then search for their IRC nick
+    if [ -z "$NAME" ]; then
+        NAME=$(jq -r '.[] | .irc' "$RELENG_JSON" | grep -Pi "$@")
+        SELECT=irc
+    fi
+
+    # Give up if you can't find the person
+    if [ -z "$NAME" ]; then
+        usage
+        exit 0
+    fi
+
+    # Find the person's timezone
+    QUERY=$(printf '.[] | select(.%b == "%b") | .timezone' "$SELECT" "$NAME")
+    TZ=$(jq -r "$QUERY" "$RELENG_JSON")
+    printf '%s - %s - ' "$NAME" "$TZ"
+fi
+
+TZ="$TZ" date -Is

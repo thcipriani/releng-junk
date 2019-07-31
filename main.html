@@ -1,0 +1,344 @@
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>time.releng.team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+<style>
+body {
+    color: #333;
+    font-family: sans-serif;
+    line-height: 1.6em;
+}
+header {
+    margin: 0;
+    overflow: hidden;
+}
+header .logo {
+    padding: 0.25em 1em;
+    float: left;
+    font-size: 1em;
+    font-weight: 300;
+}
+header nav {
+    float: right;
+}
+header:after {
+    content: '';
+    height: 3px;
+    display: block;
+    background-image: linear-gradient(to right, #990000 15%, #006699 15%, #006699 85%, #339966 85%);
+    clear: both;
+}
+
+ul {
+    clear: both;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    float: left;
+    padding: 1em;
+}
+.select-box {
+    padding: 1em;
+    float: right;
+}
+.select-box select {
+    padding: 0.5em;
+    background: rgba(0,0,0,0.15);
+    border-radius: 0.1em;
+}
+.main {
+    margin: 1em auto;
+    width: 70em;
+}
+.person {
+    width: 15em;
+    height: 15em;
+    text-align: center;
+}
+.irc, .date, .time, .offset {
+    margin: 0;
+}
+.name {
+    margin-bottom: 0;
+    font-weight: 300;
+}
+.time {
+    font-size: 3em;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+.offset, .irc {
+    font-size: smaller;
+    font-weight: 300;
+}
+@media (max-width: 54em) {
+    body {
+        font-size: 1em;
+        line-height: 1.6em;
+    }
+    header .logo {
+        padding: 0.25em;
+    }
+    header nav li {
+        float: left;
+        padding: 1em 0.25em;
+    }
+    .main {
+        width: 85%;
+    }
+    .person {
+        width: 100%;
+        padding: 0;
+    }
+    .select-box {
+        float: none;
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">Wikimedia RelEng Team</h1>
+        <nav>
+            <ul>
+                <li><a href="https://releng.team">Wiki</a></li>
+                <li><a href="https://phab.releng.team">Phab</a></li>
+                <li><a href="https://sal.releng.team">SAL</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="select-box">
+    <label for="sort">
+        Sort by:
+    </label>
+    <select id="sort">
+        <option value="default">Default</option>
+        <option value="nick">Nick &#x2193;</option>
+        <option value="nick-rev">Nick &#x2191;</option>
+        <option value="tz">Timezone &#x2193;</option>
+        <option value="tz-rev">Timezone &#x2191;</option>
+    </select>
+    </section>
+    <ul class="main">
+    </ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" integrity="sha256-AdQN98MVZs44Eq2yTwtoKufhnU+uZ7v2kXnD5vqzZVo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.26/moment-timezone-with-data-10-year-range.js" integrity="sha256-xb0+hFwaD8o/T7YBgTod6DhumZBrtwmSwcWym6jo9CE=" crossorigin="anonymous"></script>
+<script>
+    (function() {
+        "use strict"
+
+        const people = [
+            {
+                "first_name": "Brennen",
+                "last_name": "Bearnes",
+                "irc": "brennen",
+                "timezone": "America/Denver"
+            },
+            {
+                "first_name": "Jean-Rene",
+                "last_name": "Branaa",
+                "irc": "jrbranaa",
+                "timezone": "America/Los_Angeles"
+            },
+            {
+                "first_name": "Tyler",
+                "last_name": "Cipriani",
+                "irc": "thcipriani",
+                "timezone": "America/Denver"
+            },
+            {
+                "first_name": "Daniel",
+                "last_name": "Duvall",
+                "irc": "marxarelli",
+                "timezone": "America/Los_Angeles"
+            },
+            {
+                "first_name": "Željko",
+                "last_name": "Filipin",
+                "irc": "zeljkof",
+                "timezone": "Europe/Zagreb"
+            },
+            {
+                "first_name": "James",
+                "last_name": "Forrester",
+                "irc": "James_F",
+                "timezone": "America/Los_Angeles"
+            },
+            {
+                "first_name": "Greg",
+                "last_name": "Grossmeier",
+                "irc": "greg-g",
+                "timezone": "America/Los_Angeles"
+            },
+            {
+                "first_name": "Jeena",
+                "last_name": "Huneidi",
+                "irc": "longma",
+                "timezone": "America/Los_Angeles"
+            },
+            {
+                "first_name": "Mukunda",
+                "last_name": "Modell",
+                "irc": "twentyafterfour",
+                "timezone": "America/Chicago"
+            },
+            {
+                "first_name": "Antoine",
+                "last_name": "Musso",
+                "irc": "hashar",
+                "timezone": "Europe/Paris"
+            },
+            {
+                "first_name": "Lars",
+                "last_name":  "Wirzenius",
+                "irc": "liw",
+                "timezone": "Europe/Helsinki"
+            }
+        ],
+            people_len = people.length,
+            $sortSelector = $('#sort')
+
+        let timeoutStarted = false
+
+        function makeId(name) {
+            return name.replace(' ', '-')
+        }
+
+        function drawPage(people) {
+            var $main = $('.main')
+
+            $main.empty()
+
+            for (var i = 0; i < people_len ; i++) {
+                var person = people[i],
+                    $div = $('<li></li>').attr('id', makeId(person.irc)).attr('class', 'person'),
+                    $fullname = $('<h2></h2>').attr('class', 'name'),
+                    $nick = $('<h3></h3>').attr('class', 'irc'),
+                    $dateTime = $('<p></p>').attr('class', 'dateTime')
+
+                $fullname.append(person.first_name + ' ' + person.last_name)
+                $nick.append(person.irc)
+                $div.append($fullname).append($nick).append($dateTime)
+
+                $main.append($div)
+            }
+
+            updateTime()
+        }
+
+        function updateTime() {
+            var now = moment()
+
+            for (var i = 0; i < people_len; i++) {
+                var person = people[i],
+                    m = now.tz(person.timezone),
+                    $timediv = $('#' + makeId(person.irc) + ' .dateTime'),
+                    $update = $('<div></div>').attr('class', 'moment'),
+                    $date = $('<p></p>').attr('class', 'date'),
+                    $time = $('<p></p>').attr('class', 'time'),
+                    $offset = $('<p></p>').attr('class', 'offset')
+
+                $update
+                    .append($date.text(m.format('MMMM Do YYYY')))
+                    .append($time.text(m.format('H:mm')))
+                    .append($offset.text(m.format('Z')))
+
+                $timediv.html($update)
+            }
+        }
+
+        function sortPeople(sort) {
+            var sorted = people.slice(0),
+                sort = sort || '',
+                reverse = sort.indexOf('-rev') >= 0
+
+            if (reverse) {
+                sort = sort.slice(0, -4)
+            }
+
+            console.log(sort)
+
+            switch(sort) {
+                case 'tz':
+                    sorted.sort(function(x, y) {
+                        if (x.timezone == y.timezone) {
+                            if (x.last_name < y.last_name) {
+                                return -1
+                            } else if (x.last_name > y.last_name) {
+                                return 1
+                            }
+                            return 0
+                        }
+
+                        var xOffset = moment.tz(x.timezone)._offset,
+                            yOffset = moment.tz(y.timezone)._offset
+
+                        if (xOffset < yOffset) {
+                            return -1 // X is earlier
+                        }
+                        return 1 // Y is earlier
+                    })
+                    break
+
+                case 'nick':
+                    sorted.sort(function(x, y) {
+                        var xIrc = x.irc.toLowerCase(),
+                            yIrc = y.irc.toLowerCase()
+                        if (xIrc == yIrc) {
+                            return 0
+                        }
+
+                        if (xIrc < yIrc) {
+                            return -1 // X is earlier
+                        }
+                        return 1 // Y is earlier
+                    })
+                    break
+
+                default:
+                    break
+            }
+            if (reverse) {
+                return sorted.reverse()
+            }
+            return sorted
+        }
+
+        $sortSelector.on('change', function(e) {
+            var sorted = sortPeople(e.target.value)
+            drawPage(sorted)
+        })
+
+        function tick() {
+            updateTime()
+            setTimeout(function() {
+                tick()
+            }, 5000)
+        }
+
+        function init() {
+            drawPage(sortPeople())
+            updateTime()
+
+            if (! timeoutStarted) {
+                timeoutStarted = true
+                tick()
+            }
+        }
+
+        init()
+    })()
+</script>
+</body>
+</html>

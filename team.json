@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Brennen Bearnes",
+        "irc": "brennen",
+        "timezone": "America/Denver"
+    },
+    {
+        "name": "Jean-Rene (JR) Branaa",
+        "irc": "jrbranaa",
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Tyler Cipriani",
+        "irc": "thcipriani",
+        "timezone": "America/Denver"
+    },
+    {
+        "name": "Daniel Duvall",
+        "irc": "marxarelli",
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Željko (Zeljko) Filipin",
+        "irc": "zeljkof",
+        "timezone": "Europe/Zagreb"
+    },
+    {
+        "name": "James Forrester",
+        "irc": "James_F",
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Greg Grossmeier",
+        "irc": "greg-g",
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Jeena Huneidi",
+        "irc": "longma",
+        "timezone": "America/Los_Angeles"
+    },
+    {
+        "name": "Mukunda Modell",
+        "irc": "twentyafterfour",
+        "timezone": "America/Chicago"
+    },
+    {
+        "name": "Antoine Musso",
+        "irc": "hashar",
+        "timezone": "Europe/Paris"
+    },
+    {
+        "name": "Lars Wirzenius",
+        "irc": "liw",
+        "timezone": "Europe/Helsinki"
+    }
+]
