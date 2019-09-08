@@ -1,0 +1,26 @@
+#!/usr/bin/env bhas
+
+OWNERS=(
+    "Lars+Wirzenius"
+    thcipriani
+    hashar
+    brennen
+    Jrbranaa
+    "Jeena+Huneidi"
+    Dduvall
+    Zfilipin
+    Jforrester
+    "Greg+Grossmeier"
+    20after4
+)
+OWNER_URL="(owner:"
+for owner in "${OWNERS[@]}"; do
+    OWNER_URL="${OWNER_URL}${owner}+OR+owner:"
+done
+OWNER_URL="${OWNER_URL::-10})"
+FULL_URL="https://gerrit.wikimedia.org/r/changes/?q=${OWNER_URL}+-age:1week"
+CHANGE_STATUS=$(curl -s "$FULL_URL" | tail +6c | jq '.[] | .status')
+CHANGES=$(echo "$CHANGE_STATUS" | wc -l)
+MERGED=$(echo "$CHANGE_STATUS" | grep 'MERGED' | wc -l)
+
+printf 'Total changes: %s\nMerged changes: %s\n' "$CHANGES" "$MERGED"
