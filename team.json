@@ -2,56 +2,67 @@
     {
         "name": "Brennen Bearnes",
         "irc": "brennen",
+        "phab": "brennen",
         "timezone": "America/Denver"
     },
     {
         "name": "Jean-Rene (JR) Branaa",
         "irc": "jrbranaa",
+        "phab": "jrbranaa",
         "timezone": "America/Los_Angeles"
     },
     {
         "name": "Tyler Cipriani",
         "irc": "thcipriani",
+        "phab": "thcipriani",
         "timezone": "America/Denver"
     },
     {
         "name": "Daniel Duvall",
         "irc": "marxarelli",
+        "phab": "dduvall",
         "timezone": "America/Los_Angeles"
     },
     {
         "name": "Željko (Zeljko) Filipin",
         "irc": "zeljkof",
+        "phab": "zeljkofilipin",
         "timezone": "Europe/Zagreb"
     },
     {
         "name": "James Forrester",
         "irc": "James_F",
+        "phab": "Jdforrester-WMF",
         "timezone": "America/Los_Angeles"
     },
     {
         "name": "Greg Grossmeier",
         "irc": "greg-g",
+        "phab": "greg",
         "timezone": "America/Los_Angeles"
     },
     {
         "name": "Jeena Huneidi",
         "irc": "longma",
+        "phab": "jeena",
         "timezone": "America/Los_Angeles"
     },
     {
         "name": "Mukunda Modell",
         "irc": "twentyafterfour",
+        "phab": "mmodell",
         "timezone": "America/Chicago"
     },
     {
         "name": "Antoine Musso",
         "irc": "hashar",
+        "phab": "hashar",
         "timezone": "Europe/Paris"
     },
     {
         "name": "Lars Wirzenius",
         "irc": "liw",
+        "phab": "LarsWirzenius",
         "timezone": "Europe/Helsinki"
     }
 ]

@@ -9,27 +9,26 @@ import (
 	"os"
 )
 
-type Relenger struct {
-	Name string
-	Irc string
-	Timezone string
+type Redirect struct {
+	Cname string
+	Redirect string
 }
 
 var (
-	relengers []Relenger
+	redirects []Redirect
 )
 
-func handleHttp(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hi")
+func handleRedirect(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, redirects)
 }
 
-func setupRelengers() {
-	data, err := ioutil.ReadFile("team.json")
+func setupRedirects() {
+	data, err := ioutil.ReadFile("redirect.json")
 	if err != nil {
 		fmt.Println("error:", err)
 		os.Exit(1)
 	}
-	err = json.Unmarshal(data, &relengers)
+	err = json.Unmarshal(data, &redirects)
 	if err != nil {
 		fmt.Println("error:", err)
 		os.Exit(1)
@@ -37,8 +36,8 @@ func setupRelengers() {
 }
 
 func main() {
-	setupRelengers()
+	setupRedirects()
 
-	http.HandleFunc("/", handleHttp)
+	http.HandleFunc("/", handleRedirect)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+DATE=$1
+FILED=$(python3 releng-phab-arc-queries.py --filed "$DATE" | \
+    arc call-conduit maniphest.search | \
+    jq '.response.data | length')
+CLOSED=$(python3 releng-phab-arc-queries.py --closed "$DATE" | \
+    arc call-conduit maniphest.search | \
+    jq '.response.data | length')
+
+
+printf 'Filed: %s\nClosed: %s\n' "$FILED" "$CLOSED"
