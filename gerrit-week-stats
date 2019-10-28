@@ -1,4 +1,4 @@
-#!/usr/bin/env bhas
+#!/usr/bin/env bash
 
 OWNERS=(
     "Lars+Wirzenius"
