@@ -1,6 +1,10 @@
 [
     {
         "cname": "time.releng.team",
-        "redirect": "https://tools.wmflabs.org/timerelengteam/"
+        "path": "https://tools.wmflabs.org/timerelengteam/"
+    },
+    {
+        "cname": "tyler.releng.team",
+        "path": "https://tylercipriani.com/"
     }
 ]

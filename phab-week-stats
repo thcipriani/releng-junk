@@ -9,4 +9,4 @@ CLOSED=$(python3 releng-phab-arc-queries.py --closed "$DATE" | \
     jq '.response.data | length')
 
 
-printf 'Filed: %s\nClosed: %s\n' "$FILED" "$CLOSED"
+printf 'Tasks authored by RelEng folks: %s\nClosed tasks owned by RelEng folks: %s\n' "$FILED" "$CLOSED"

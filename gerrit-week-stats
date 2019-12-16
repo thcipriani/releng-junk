@@ -23,4 +23,4 @@ CHANGE_STATUS=$(curl -s "$FULL_URL" | tail +6c | jq '.[] | .status')
 CHANGES=$(echo "$CHANGE_STATUS" | wc -l)
 MERGED=$(echo "$CHANGE_STATUS" | grep 'MERGED' | wc -l)
 
-printf 'Total changes: %s\nMerged changes: %s\n' "$CHANGES" "$MERGED"
+printf 'Changes created by RelEng folks: %s\nMerged changes owned by RelEng folks: %s\n' "$CHANGES" "$MERGED"

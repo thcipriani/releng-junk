@@ -23,7 +23,7 @@ def get_relengers():
 
 
 def get_phids():
-    with open('team.json') as f:
+    with open('team-private.json') as f:
         team = json.load(f)
     return [str(t['phid']) for t in team]
 
