@@ -31,7 +31,9 @@ subheader() {
 
 # header "Random Stats"
 subheader "Phab Stats"
-bash phab-stats "$START" "$END"
+set -- $(./phab-stats "$START" "$END")
+printf 'Tasks authored by RelEng folks: %s\nClosed tasks owned by RelEng folks: %s\n' "$1" "$2"
+
 subheader "Gerrit stats"
 set -- $(./gerrit-stats "$START" "$END")
 printf 'Changes created by RelEng folks: %s\nMerged changes owned by RelEng folks: %s\n' "$1" "$2"

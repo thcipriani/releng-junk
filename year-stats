@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+header() {
+    printf '== %s ==\n' "$@"
+}
+
+subheader() {
+    printf '=== %s ===\n' "$@"
+}
+
+MONTHS=(
+    'Jan' 'Feb' 'Mar' 'Apr' 'May' 'Jun' 'Jul' 'Aug' 'Sep' 'Oct' 'Nov' 'Dec'
+)
+
+
+header "Yearly Stats"
+
+LOG_DIR="log/$(date +%Y)"
+PHAB_CSV="${LOG_DIR}/phab.csv"
+GERRIT_CSV="${LOG_DIR}/gerrit.csv"
+
+mkdir -p "$LOG_DIR"
+printf 'Month,Filed,Closed\n' > "$PHAB_CSV"
+printf 'Month,Create,Merged\n' > "$GERRIT_CSV"
+
+for i in {1..12}; do
+    START=$(date -I --date="2019-$(printf '%02d' $i)-01T00:00:00+0")
+    if (( i == 12 )); then
+        END=$(date -I --date="2020-01-01T00:00:00+0")
+    else
+        END=$(date -I --date="2019-$(printf '%02d' $((i + 1)))-01T00:00:00+0")
+    fi
+
+    # printf "%s\t%s\n" "$START" "$END"
+
+    subheader "${MONTHS[$(( i - 1 ))]} Gerrit"
+    set -- $(./gerrit-stats "$START" "$END")
+    printf '%s,%s,%s\n' "$(printf '%02d' $i)" "$1" "$2" | tee -a "$GERRIT_CSV"
+
+    subheader "${MONTHS[$(( i - 1 ))]} Phab"
+    set -- $(./phab-stats "$START" "$END")
+    printf '%s,%s,%s\n' "$(printf '%02d' $i)" "$1" "$2" | tee -a "$PHAB_CSV"
+done
