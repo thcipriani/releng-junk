@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+cat <<HELP
+    Get the number of patches in a given week, month, or year
+
+    USAGE:
+        $0 <START> [END]
+
+    PARAMETERS:
+         START:   Start Date (iso 8601)
+         END:   End date (default: now, iso 8601)
+
+     EXAMPLES:
+        $0 2019-10-01 2019-11-01 # -> changes for October
+        $0 2019-01-01            # -> Changes since Jan 1
+HELP
+}
+
+if (( $# < 1 )); then
+    usage
+    exit 1
+fi
+
+if (( $# == 2 )); then
+    END=$2
+else
+    END=$(date -Is)
+fi
+
+START=$1
+
+QUERY="before:${END}+after:${START}"
+
+OWNERS=(
+    "Lars+Wirzenius"
+    thcipriani
+    hashar
+    brennen
+    Jrbranaa
+    "Jeena+Huneidi"
+    Dduvall
+    Zfilipin
+    Jforrester
+    "Greg+Grossmeier"
+    20after4
+)
+OWNER_URL="(owner:"
+for owner in "${OWNERS[@]}"; do
+    OWNER_URL="${OWNER_URL}${owner}+OR+owner:"
+done
+OWNER_URL="${OWNER_URL::-10})"
+FULL_URL="https://gerrit.wikimedia.org/r/changes/?q=${OWNER_URL}+${QUERY}"
+CHANGE_STATUS=$(curl -s "$FULL_URL" | tail +6c | jq '.[] | .status')
+CHANGES=$(echo "$CHANGE_STATUS" | wc -l)
+MERGED=$(echo "$CHANGE_STATUS" | grep -c 'MERGED')
+
+# printf 'Changes created by RelEng folks: %s\nMerged changes owned by RelEng folks: %s\n' "$CHANGES" "$MERGED"
+printf '%s\n%s' "$CHANGES" "$MERGED"

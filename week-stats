@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
 set -euo pipefail
-DATE=$1
+
+usage() {
+cat <<HELP
+    Get the number of patches + phab tasks in a given week, month, or year
+
+    USAGE:
+        $0 <START> [END]
+
+    PARAMETERS:
+         START:   Start Date (iso 8601)
+         END:   End date (default: now, iso 8601)
+
+     EXAMPLES:
+        $0 2019-10-01 2019-11-01 # -> changes for October
+        $0 2019-01-01            # -> Changes since Jan 1
+HELP
+}
+
+START=$(date -I --date='1 week ago')
+END=$(date -I)
 
 header() {
     printf '== %s ==\n' "$@"
@@ -10,8 +29,9 @@ subheader() {
     printf '=== %s ===\n' "$@"
 }
 
-header "Random Stats"
+# header "Random Stats"
 subheader "Phab Stats"
-bash phab-week-stats "$DATE"
+bash phab-stats "$START" "$END"
 subheader "Gerrit stats"
-bash gerrit-week-stats
+set -- $(./gerrit-stats "$START" "$END")
+printf 'Changes created by RelEng folks: %s\nMerged changes owned by RelEng folks: %s\n' "$1" "$2"

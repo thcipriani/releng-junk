@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
-DATE=$1
-FILED=$(python3 releng-phab-arc-queries.py --filed "$DATE" | \
-    arc call-conduit maniphest.search | \
-    jq '.response.data | length')
-CLOSED=$(python3 releng-phab-arc-queries.py --closed "$DATE" | \
-    arc call-conduit maniphest.search | \
-    jq '.response.data | length')
 
+START_DATE=$1
+END_DATE=$2
+
+FILED=$(python3 releng-phab-arc-queries.py --filed --start-date "$START_DATE" --end-date "$END_DATE" | \
+    arc call-conduit maniphest.search | \
+    jq '.response.data | length')
+CLOSED=$(python3 releng-phab-arc-queries.py --closed --start-date "$START_DATE" --end-date "$END_DATE" | \
+    arc call-conduit maniphest.search | \
+    jq '.response.data | length')
 
 printf 'Tasks authored by RelEng folks: %s\nClosed tasks owned by RelEng folks: %s\n' "$FILED" "$CLOSED"
