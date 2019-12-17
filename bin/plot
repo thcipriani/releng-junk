@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Make line graph from a csv
+# Copyright 2019 Tyler Cipriani; GPLv3
+
+set -euo pipefail
+
+CSV="$1"
+YAXIS="$2"
+TITLE="$3"
+
+cat<<GNUPLOT
+    set datafile separator ','
+
+    set title '$TITLE'
+    set key autotitle columnhead
+    set ylabel '$YAXIS'
+    set xlabel 'Month'
+    set term png
+    plot '$CSV' using 1:2 with lines, '$CSV' using 1:3 with lines
+GNUPLOT
