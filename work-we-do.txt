@@ -21,6 +21,7 @@
 *** New CI
 **** Lars (Lead)
 **** Dan
+**** Antoine (Support)
 ** Package
 *** Deployment Pipeline
 **** Dan (Lead)
@@ -42,6 +43,7 @@
 *** Deployment Software
 **** Dan
 **** Lars
+**** Mukunda
 **** Brennen (support)
 **** Tyler (support)
 @endwbs
