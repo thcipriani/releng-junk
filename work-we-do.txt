@@ -1,0 +1,42 @@
+@startwbs
+* Developer Productivity
+** Collaborate
+*** LocalDev
+**** Jeena (Lead)
+**** Brennen
+**** Mukunda (support)
+*** Gerrit
+**** Dan (Lead)
+**** Antoine
+**** Tyler (support)
+*** Phab
+**** Mukunda (Lead)
+**** Brennen
+**** Antoine (support)
+** Verify
+*** Jenkins/Zuul/JJB/Quibble/Integration Cluster
+**** Antoine (Lead)
+**** James
+**** Jeena
+*** New CI
+**** Lars (Lead)
+**** Dan
+** Package
+*** Deployment Pipeline
+**** Dan (Lead)
+**** Lars
+** Release
+*** Deployment (everyone)
+**** Mukunda (Lead)
+**** Dan
+**** James
+**** Jeena
+**** Lars
+**** Brennen
+**** Antoine
+*** Deployment Software
+**** Dan
+**** Lars
+**** Brennen (support)
+**** Tyler (support)
+@endwbs
