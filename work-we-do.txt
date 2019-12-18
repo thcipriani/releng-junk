@@ -1,5 +1,5 @@
 @startwbs
-* Developer Productivity
+* Release Engineering
 ** Collaborate
 *** LocalDev
 **** Jeena (Lead)
@@ -24,6 +24,11 @@
 ** Package
 *** Deployment Pipeline
 **** Dan (Lead)
+**** Lars
+*** MediaWiki Config
+**** James (Lead)
+**** Mukunda
+**** Dan
 **** Lars
 ** Release
 *** Deployment (everyone)
