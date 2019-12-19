@@ -13,7 +13,7 @@
 **** Mukunda (Lead)
 **** Brennen
 **** Antoine (support)
-** Verify
+** Commit
 *** Jenkins/Zuul/JJB/Quibble/Integration Cluster
 **** Antoine (Lead)
 **** James
@@ -22,7 +22,7 @@
 **** Lars (Lead)
 **** Dan
 **** Antoine (Support)
-** Package
+** Accept
 *** Deployment Pipeline
 **** Dan (Lead)
 **** Lars
