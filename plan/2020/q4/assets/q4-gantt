@@ -4,34 +4,36 @@ saturdays are closed
 sundays are closed
 
 [MediaWiki Config Static] starts the 2020-04-01
-[MediaWiki Config Static] on {James} ends the 2020-06-26
+[MediaWiki Config Static] on {James:85%} ends the 2020-06-26
 
 [Local Dev] starts the 2020-04-01
-[Local Dev] on {Jeena}{Brennen} ends the 2020-06-26
+[Local Dev] on {Jeena:85%}{Brennen:85%} ends the 2020-06-26
 
 [New CI] starts the 2020-04-01
-[New CI] on {Lars}{Dan} ends the 2020-06-26
+[New CI] on {Lars:85%}{Dan:85%} ends the 2020-06-26
 
 [Train Test Environment] starts the 2020-04-01
-[Train Test Environment] on {Mukunda}{Jeena} ends the 2020-06-26
+[Train Test Environment] on {Lars:85%}{Mukunda:85%} ends the 2020-06-26
 
 -- Continues from Q3 --
 
 [Setup experimental ElasticSearch] starts the 2020-04-01
 [Setup experimental ElasticSearch] is colored in Tomato
-[Setup experimental ElasticSearch] on {Mukunda}{Jeena} ends the 2020-06-26
+[Setup experimental ElasticSearch] on {Mukunda:85%}{Jeena} ends the 2020-05-08
 
 [Contint1001 Jessie Migration] starts the 2020-04-01
 [Contint1001 Jessie Migration] is colored in Tomato
-[Contint1001 Jessie Migration] on {Antoine}{James} ends the 2020-06-26
+[Contint1001 Jessie Migration] on {Antoine:85%} ends the 2020-06-26
+
+[Train Test Environment] starts at [Setup experimental ElasticSearch]'s end
 
 -- On Going Work --
 
 [Deployment Pipeline Migrations] starts the 2020-04-01
 [Deployment Pipeline Migrations] is colored in LightBlue
-[Deployment Pipeline Migrations] on {James} ends the 2020-06-26
+[Deployment Pipeline Migrations] on {James:10%}{Dan:10%} ends the 2020-06-26
 
 [Train] starts the 2020-03-09
 [Train] is colored in LightBlue
-[Train] on {Antoine}{Brennen}{Dan}{James}{Jeena}{Lars}{Mukunda} ends the 2020-06-26
+[Train] on {Antoine:15%}{Brennen:15%}{Dan:15%}{James:15%}{Jeena:15%}{Lars:15%}{Mukunda:15%} ends the 2020-06-26
 @endgantt
