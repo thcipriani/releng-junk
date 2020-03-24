@@ -19,4 +19,4 @@
 
 ## Resources Chart
 
-![uncached image](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/thcipriani/releng-junk/master/plan/2020/q4/assets/q4-gantt)
+![q4 gantt chart](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/thcipriani/releng-junk/master/plan/2020/q4/assets/q4-gantt)
