@@ -22,17 +22,15 @@ branch point.
         -w 1.35.0-wmf.23 \
         -w 1.35.0-wmf.24 \
         -w 1.35.0-wmf.25
-	1.35.0-wmf.15 - 7:21:6:29
-	1.35.0-wmf.18 - 18:3:40:25
-	1.35.0-wmf.19 - 13:6:16:14
-	1.35.0-wmf.20 - 25:23:13:36
-	1.35.0-wmf.21 - 11:13:4:49
-	1.35.0-wmf.22 - 7:23:7:34
-	1.35.0-wmf.23 - 19:18:39:22
-	1.35.0-wmf.24 - 10:18:9:27
-	1.35.0-wmf.25 - 9:17:56:52
-	Average p95: 17:8:8:18
-
+      1.35.0-wmf.18   16:14:37:19
+      1.35.0-wmf.19   20:3:12:19
+      1.35.0-wmf.20   12:23:31:25
+      1.35.0-wmf.21   15:9:21:31
+      1.35.0-wmf.22   12:14:32:7
+      1.35.0-wmf.23   11:20:13:52
+      1.35.0-wmf.24   12:11:3:32
+      1.35.0-wmf.25   10:2:25:31
+      Average for p95: 14:0:22:12
 
 ## How it works
 
@@ -43,3 +41,5 @@ branch point.
 * Get the p95 of the difference between commit time of each patch in the
   branch, and the train branch point
 * Reports an average of the p95 at the end.
+* It also expects all extensions listed in `REPO_LIST` to be under the core
+  path (TODO: read from `.gitmodules` for each branch.

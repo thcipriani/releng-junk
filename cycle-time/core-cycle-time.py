@@ -10,7 +10,201 @@ from datetime import datetime, timedelta
 from dateutil.parser import parse as dateutil_parse
 
 
-GITILES_CORE = 'https://gerrit.wikimedia.org/g/mediawiki/core/+log/wmf/'
+REPO_LIST = [
+        "extensions/3D"
+        ,"extensions/AbuseFilter"
+        ,"extensions/ActiveAbstract"
+        ,"extensions/AdvancedSearch"
+        ,"extensions/AntiSpoof"
+        ,"extensions/ApiFeatureUsage"
+        ,"extensions/ArticleCreationWorkflow"
+        ,"extensions/ArticlePlaceholder"
+        ,"extensions/Babel"
+        ,"extensions/BetaFeatures"
+        ,"extensions/BounceHandler"
+        ,"extensions/Calendar"
+        ,"extensions/Campaigns"
+        ,"extensions/Capiunto"
+        ,"extensions/CategoryTree"
+        ,"extensions/CentralAuth"
+        ,"extensions/CentralNotice"
+        ,"extensions/CharInsert"
+        ,"extensions/CheckUser"
+        ,"extensions/CirrusSearch"
+        ,"extensions/Cite"
+        ,"extensions/CiteThisPage"
+        ,"extensions/Citoid"
+        ,"extensions/cldr"
+        ,"extensions/CodeEditor"
+        ,"extensions/CodeMirror"
+        ,"extensions/CodeReview"
+        ,"extensions/Cognate"
+        ,"extensions/CollaborationKit"
+        ,"extensions/Collection"
+        ,"extensions/CommonsMetadata"
+        ,"extensions/ConfirmEdit"
+        ,"extensions/CongressLookup"
+        ,"extensions/ContactPage"
+        ,"extensions/ContentTranslation"
+        ,"extensions/ContributionTracking"
+        ,"extensions/CreditsSource"
+        ,"extensions/Dashiki"
+        ,"extensions/Disambiguator"
+        ,"extensions/DiscussionTools"
+        ,"extensions/DismissableSiteNotice"
+        ,"extensions/DonationInterface"
+        ,"extensions/DoubleWiki"
+        ,"extensions/DynamicSidebar"
+        ,"extensions/Echo"
+        ,"extensions/Elastica"
+        ,"extensions/ElectronPdfService"
+        ,"extensions/EntitySchema"
+        ,"extensions/EventBus"
+        ,"extensions/EventLogging"
+        ,"extensions/EventStreamConfig"
+        ,"extensions/ExtensionDistributor"
+        ,"extensions/ExternalGuidance"
+        ,"extensions/FeaturedFeeds"
+        ,"extensions/FileExporter"
+        ,"extensions/FileImporter"
+        ,"extensions/FlaggedRevs"
+        ,"extensions/Flow"
+        ,"extensions/FundraiserLandingPage"
+        ,"extensions/FundraisingTranslateWorkflow"
+        ,"extensions/Gadgets"
+        ,"extensions/GeoCrumbs"
+        ,"extensions/GeoData"
+        ,"extensions/GettingStarted"
+        ,"extensions/GlobalBlocking"
+        ,"extensions/GlobalCssJs"
+        ,"extensions/GlobalPreferences"
+        ,"extensions/GlobalUsage"
+        ,"extensions/GlobalUserPage"
+        ,"extensions/GoogleNewsSitemap"
+        ,"extensions/Graph"
+        ,"extensions/GrowthExperiments"
+        ,"extensions/GuidedTour"
+        ,"extensions/GWToolset"
+        ,"extensions/ImageMap"
+        ,"extensions/InputBox"
+        ,"extensions/Insider"
+        ,"extensions/intersection"
+        ,"extensions/Interwiki"
+        ,"extensions/InterwikiSorting"
+        ,"extensions/Jade"
+        ,"extensions/Josa"
+        ,"extensions/JsonConfig"
+        ,"extensions/Kartographer"
+        ,"extensions/LabeledSectionTransclusion"
+        ,"extensions/LandingCheck"
+        ,"extensions/LdapAuthentication"
+        ,"extensions/Linter"
+        ,"extensions/LiquidThreads"
+        ,"extensions/Listings"
+        ,"extensions/LocalisationUpdate"
+        ,"extensions/LoginNotify"
+        ,"extensions/MachineVision"
+        ,"extensions/MapSources"
+        ,"extensions/MassMessage"
+        ,"extensions/Math"
+        ,"extensions/MobileApp"
+        ,"extensions/MobileFrontend"
+        ,"extensions/MultimediaViewer"
+        ,"extensions/NavigationTiming"
+        ,"extensions/Newsletter"
+        ,"extensions/NewUserMessage"
+        ,"extensions/Nuke"
+        ,"extensions/OATHAuth"
+        ,"extensions/OAuth"
+        ,"extensions/OpenStackManager"
+        ,"extensions/ORES"
+        ,"extensions/PageAssessments"
+        ,"extensions/PagedTiffHandler"
+        ,"extensions/PageImages"
+        ,"extensions/PageTriage"
+        ,"extensions/PageViewInfo"
+        ,"extensions/ParserFunctions"
+        ,"extensions/ParsoidBatchAPI"
+        ,"extensions/PdfHandler"
+        ,"extensions/PerformanceInspector"
+        ,"extensions/Petition"
+        ,"extensions/Poem"
+        ,"extensions/PoolCounter"
+        ,"extensions/Popups"
+        ,"extensions/ProofreadPage"
+        ,"extensions/PropertySuggester"
+        ,"extensions/QuickSurveys"
+        ,"extensions/Quiz"
+        ,"extensions/ReadingLists"
+        ,"extensions/RelatedArticles"
+        ,"extensions/Renameuser"
+        ,"extensions/RevisionSlider"
+        ,"extensions/RSS"
+        ,"extensions/SandboxLink"
+        ,"extensions/Score"
+        ,"extensions/Scribunto"
+        ,"extensions/SearchExtraNS"
+        ,"extensions/SecureLinkFixer"
+        ,"extensions/SecurePoll"
+        ,"extensions/Sentry"
+        ,"extensions/ShortUrl"
+        ,"extensions/SiteMatrix"
+        ,"extensions/SpamBlacklist"
+        ,"extensions/SubPageList3"
+        ,"extensions/SubpageSortkey"
+        ,"extensions/SyntaxHighlight_GeSHi"
+        ,"extensions/TemplateData"
+        ,"extensions/TemplateSandbox"
+        ,"extensions/TemplateStyles"
+        ,"extensions/TemplateWizard"
+        ,"extensions/TextExtracts"
+        ,"extensions/Thanks"
+        ,"extensions/TheWikipediaLibrary"
+        ,"extensions/TimedMediaHandler"
+        ,"extensions/timeline"
+        ,"extensions/TitleBlacklist"
+        ,"extensions/TocTree"
+        ,"extensions/TorBlock"
+        ,"extensions/Translate"
+        ,"extensions/TranslationNotifications"
+        ,"extensions/TrustedXFF"
+        ,"extensions/TwoColConflict"
+        ,"extensions/UniversalLanguageSelector"
+        ,"extensions/UploadsLink"
+        ,"extensions/UploadWizard"
+        ,"extensions/UrlShortener"
+        ,"extensions/UserMerge"
+        ,"extensions/VipsScaler"
+        ,"extensions/VisualEditor"
+        ,"extensions/WebAuthn"
+        ,"extensions/Wikibase"
+        ,"extensions/WikibaseCirrusSearch"
+        ,"extensions/WikibaseLexeme"
+        ,"extensions/WikibaseLexemeCirrusSearch"
+        ,"extensions/WikibaseMediaInfo"
+        ,"extensions/WikibaseQualityConstraints"
+        ,"extensions/Wikidata.org"
+        ,"extensions/WikidataPageBanner"
+        ,"extensions/WikiEditor"
+        ,"extensions/wikihiero"
+        ,"extensions/WikiLove"
+        ,"extensions/WikimediaBadges"
+        ,"extensions/WikimediaEditorTasks"
+        ,"extensions/WikimediaEvents"
+        ,"extensions/WikimediaIncubator"
+        ,"extensions/WikimediaMaintenance"
+        ,"extensions/WikimediaMessages"
+        ,"extensions/Wikisource"
+        ,"extensions/XAnalytics"
+        ,"skins/CologneBlue"
+        ,"skins/MinervaNeue"
+        ,"skins/Modern"
+        ,"skins/MonoBook"
+        ,"skins/Nostalgia"
+        ,"skins/Timeless"
+        ,"skins/Vector"
+        ,"vendor"]
+
 
 
 # Messages we don't want to see in the git log
@@ -66,7 +260,10 @@ def p95_time(git_logs, train_time):
         times.append(train_time - int(log_epoch))
 
     times = sorted(times)
-    return times[int(len(times) * 0.95)]
+    if times:
+        return times[int(len(times) * 0.95)]
+    else:
+        0
 
 def format_seconds(seconds):
     """
@@ -113,26 +310,43 @@ def git_log(git_range, path='.'):
 
 def main(args=None):
     args = parse_args(args)
-    path = args.core_path
+    core_path = args.core_path
     versions = args.wmf_versions
     total_p95 = 0
     for version in versions:
+        all_changes = []
+        version_count = 0
         if ',' in version:
             old_version, version = version.split(',')
             old_version = os.path.join('origin', 'wmf', old_version)
         else:
             old_version = previous_version(version, path)
-        train_sha, train_time = subprocess.check_output(
-            ['git', '-C', path, 'log', '--format=%H %ct', '--reverse', 'origin/master..origin/wmf/{}'.format(version)],
-            text=True
-        ).splitlines()[0].split()
-        train_time = int(train_time)
-        git_range = '{}..{}'.format(str(old_version), str(train_sha))
-        p95 = p95_time(git_log(git_range, path), train_time)
-        total_p95 += p95
-        print('{} - {}'.format(version, format_seconds(p95)))
 
-    print('Average p95: {}'.format(format_seconds(int(total_p95/len(versions)))))
+        for repo in ['.'] + REPO_LIST:
+            path = os.path.join(core_path, repo)
+            try:
+                train_sha, train_time = subprocess.check_output(
+                    ['git', '-C', path, 'log', '--format=%H %ct', '--reverse', 'origin/master..origin/wmf/{}'.format(version)],
+                    text=True
+                ).splitlines()[0].split()
+            except:
+                # This should fail for extensions since there is not extra commit for extensions
+                if repo == '.':
+                    raise
+
+                train_sha = subprocess.check_output(
+                    ['git', '-C', path, 'merge-base', 'origin/master', 'origin/wmf/{}'.format(version)],
+                    text=True
+                ).strip()
+
+            train_time = int(train_time)
+            git_range = '{}..{}'.format(str(old_version), str(train_sha))
+            all_changes += git_log(git_range, path)
+        p95 = p95_time(all_changes, train_time)
+        total_p95 += p95
+        print('{}\t{}'.format(version, format_seconds(p95)))
+
+    print('Average for p95: {}'.format(format_seconds(int(total_p95/len(versions)))))
 
 
 if __name__ == '__main__':
