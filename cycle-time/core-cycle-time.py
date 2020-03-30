@@ -206,7 +206,6 @@ REPO_LIST = [
         ,"vendor"]
 
 
-
 # Messages we don't want to see in the git log
 SKIP_MESSAGES = [
     'Localisation updates from',
@@ -250,6 +249,9 @@ def parse_args(args=None):
 
 
 def p95_time(git_logs, train_time):
+    if not git_logs:
+        return 0
+
     times = []
     for log in git_logs:
         log = log.split()
@@ -260,10 +262,8 @@ def p95_time(git_logs, train_time):
         times.append(train_time - int(log_epoch))
 
     times = sorted(times)
-    if times:
-        return times[int(len(times) * 0.95)]
-    else:
-        0
+    return times[int(len(times) * 0.95)]
+
 
 def format_seconds(seconds):
     """
@@ -320,7 +320,7 @@ def main(args=None):
             old_version, version = version.split(',')
             old_version = os.path.join('origin', 'wmf', old_version)
         else:
-            old_version = previous_version(version, path)
+            old_version = previous_version(version, core_path)
 
         for repo in ['.'] + REPO_LIST:
             path = os.path.join(core_path, repo)
