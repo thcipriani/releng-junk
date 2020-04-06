@@ -41,3 +41,25 @@ plot 'patches-for-1.3x.tsv' using 2: xtic(1) with lines
 ## 1.31 -- 1.35
 
 ![1.31-1.35.png](1.31-1.35.png)
+
+# Patches per series
+
+## Total
+
+```
+$ for i in patches-for-*.tsv; do printf "$i\t"; cat "$i" | awk '{sum += $2}END{print sum}'; done
+patches-for-1.31.0.tsv	7749
+patches-for-1.32.0.tsv	7995
+patches-for-1.33.0.tsv	7095
+patches-for-1.34.0.tsv	7810
+patches-for-1.35.0.tsv	9656
+```
+## Average
+```
+$ for i in patches-for-*.tsv; do printf "$i\t"; cat "$i" | awk '{sum += $2}END{print sum/NR}'; done
+patches-for-1.31.0.tsv	407.842
+patches-for-1.32.0.tsv	380.714
+patches-for-1.33.0.tsv	373.421
+patches-for-1.34.0.tsv	371.905
+patches-for-1.35.0.tsv	482.8
+```
