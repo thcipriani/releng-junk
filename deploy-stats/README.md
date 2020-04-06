@@ -63,3 +63,25 @@ patches-for-1.33.0.tsv	373.421
 patches-for-1.34.0.tsv	371.905
 patches-for-1.35.0.tsv	482.8
 ```
+
+## Max
+
+```
+$ for i in patches-for-*.tsv; do printf "$i\t"; cat "$i" | awk 'BEGIN{max=0}{if ($2 > max) {max = $2}}END{print max}'; done
+patches-for-1.31.0.tsv	822
+patches-for-1.32.0.tsv	824
+patches-for-1.33.0.tsv	654
+patches-for-1.34.0.tsv	781
+patches-for-1.35.0.tsv	727
+```
+
+## Min
+
+```
+$ for i in patches-for-*.tsv; do printf "$i\t"; cat "$i" | awk 'BEGIN{min=10000}{if ($2 < min) {min = $2}}END{print min}'; done
+patches-for-1.31.0.tsv	172
+patches-for-1.32.0.tsv	197
+patches-for-1.33.0.tsv	208
+patches-for-1.34.0.tsv	226
+patches-for-1.35.0.tsv	308
+```
