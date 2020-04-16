@@ -14,6 +14,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"net/http"
 	"net/url"
 	"path"
 	"sync"
@@ -38,8 +39,12 @@ func urlJoin(baseUrl string, repo string) string {
 
 // Check to see if a repo exists on a remote
 func repoExists(repo string) bool {
-	err := exec.Command("git", "ls-remote", "--exit-code", repo).Run()
-	return err == nil
+	repoFullName := "https://api.github.com/repos/wikimedia/" + githubRepoName(repo)
+	resp, err := http.Get(repoFullName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return resp.StatusCode == 200
 }
 
 // Utility function for generating a github repo uri
@@ -59,22 +64,18 @@ func githubRepoName(repo string) string {
 
 // Clone a repo
 func cloneRepo(repo string) {
-	repo = githubRepo(repo)
-	out, err := exec.Command("git", "clone", repo).CombinedOutput()
-	if err != nil {
-		log.Fatal(fmt.Sprintf("%s\n%s\n%s", repo, out, err))
-	}
+		repo = githubRepo(repo)
+		out, err := exec.Command("git", "clone", repo).CombinedOutput()
+		if err != nil {
+			log.Fatal(fmt.Sprintf("%s\n%s\n%s", repo, out, err))
+		}
 
-	fmt.Printf("%s", out)
+		fmt.Printf("%s", out)
 }
 
 // Close repo notes
 func cloneNotes(repo string) {
-	out, err := exec.Command("git", "-C", githubRepoName(repo), "fetch", gerritReplicaRepo(repo), "refs/notes/review:refs/notes/review").CombinedOutput()
-	if err != nil {
-		log.Fatal(fmt.Sprintf("%s\n%s\n%s", repo, out, err))
-	}
-
+	out, _ := exec.Command("git", "-C", githubRepoName(repo), "fetch", gerritReplicaRepo(repo), "refs/notes/review:refs/notes/review").CombinedOutput()
 	fmt.Printf("%s", out)
 }
 
@@ -86,6 +87,7 @@ func parseArgs() string {
 }
 
 func main() {
+    sem := make(chan struct{}, 12)
     f, err := os.Open(parseArgs())
     if err != nil {
         log.Fatal(err)
@@ -103,14 +105,17 @@ func main() {
     for s.Scan() {
 		// Add an item to the waitgroup
 		wg.Add(1)
+		sem <- struct{}{}
 
 		// Clone repo async
 		go func(repo string) {
-            defer wg.Done()
+		    defer func() { <-sem }()
+		    defer wg.Done()
 
-			fmt.Printf("Cloning '%s'.\n", repo)
+		    if repoExists(repo) {
 			cloneRepo(repo)
 			cloneNotes(repo)
+		}
 		}(s.Text())
     }
     err = s.Err()
