@@ -1,0 +1,3 @@
+while read phabid; do
+    printf '{"queryKey": "active", "constraints": {"members": ["%s"]}}\n' "$phabid" | arc call-conduit project.search | jq -r '.response.data[] | .fields.name'
+done < <(jq -r '.[] | .phab' < ../team-private.json)
