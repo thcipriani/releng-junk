@@ -121,7 +121,7 @@ class Phab(object):
     def tasks(self):
         return p.query_all('maniphest.search', {
             "constraints": {
-                "modifiedStart": int(subprocess.check_output(['date', '+%s', '--date', '1 Year Ago', '--utc']).strip()),
+                "createdStart": int(subprocess.check_output(['date', '+%s', '--date', '1 Year Ago', '--utc']).strip()),
                 "projects": [
                   "PHID-PROJ-4uc7r7pdosfsk55qg7f6"  # Production errors
                 ]
