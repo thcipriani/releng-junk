@@ -12,10 +12,24 @@ WHAT
     2. Query phabriactor for all tasks in any state on the Production Errors
        workboard: https://phabricator.wikimedia.org/tag/wikimedia-production-error/
        This uses PHID `PHID-PROJ-4uc7r7pdosfsk55qg7f6`
+    2.5. Filter for closed tasks
     3. For each of the many tags associated with each task increment the count
        of tasks associated with the PHID by 1 for each task on which a PHID is
        tagged.
+    > tag_counts = {
+        'releng': 0,
+        'ops': 1,
+        'bugfix': 1000
+    }
+
     4. Bitwise & the set of "teams" with the tags PHID counter keys
+    teams_with_tag = set(tag_counts.keys()) & set(teams)
+
+    > teams_with_tags = [
+        'releng'
+        'ops'
+    ]
+
     5. The remaining PHIDs are teams with tasks on the workboard
     6. Sort the team tag PHIDs counter by task count
     7. Print the team tag name followed by the task count
@@ -93,9 +107,10 @@ class Phab(object):
     def query_all(self, method, data):
         ret = []
         after = 0
+        import json
         while after is not None:
             data['after'] = after
-            print('Querying "{}:{}"'.format(method, after), file=sys.stderr)
+            # print('Querying "{}:{} -- {}"'.format(method, after, json.dumps(data, indent=4)), file=sys.stderr)
             results = self.query(method, data)
             ret += results['result']['data']
             after = results['result']['cursor']['after']
@@ -111,17 +126,13 @@ class Phab(object):
             }
         })
         for result in results:
-            has_parent = result['fields']['parent']
-            if has_parent:
-                groups[has_parent['phid']] = has_parent['name']
-                continue
             groups[result['phid']] = result['fields']['name']
         return groups
 
     def tasks(self):
-        return p.query_all('maniphest.search', {
+        return self.query_all('maniphest.search', {
             "constraints": {
-                "createdStart": int(subprocess.check_output(['date', '+%s', '--date', '1 Year Ago', '--utc']).strip()),
+                "createdStart": subprocess.check_output(['date', '+%s', '--date', '1 Year Ago', '--utc']).strip().decode('ascii'),
                 "projects": [
                   "PHID-PROJ-4uc7r7pdosfsk55qg7f6"  # Production errors
                 ]
@@ -136,16 +147,20 @@ if __name__ == '__main__':
     p = Phab()
     groups = p.groups()
     tasks = p.tasks()
-    PHIDs = Counter()
+    PHIDs = {}
 
     for task in tasks:
         for phid in task['attachments']['projects']['projectPHIDs']:
-            PHIDs[phid] += 1
+            if PHIDs.get(phid):
+                PHIDs[phid].append(task['id'])
+            else:
+                PHIDs[phid] = [task['id']]
 
     group_phids = Counter()
+
     groups_with_tasks = set(PHIDs.keys()) & set(groups)
     for group in groups_with_tasks:
-        group_phids[group] = PHIDs[group]
+        group_phids[group] = len(PHIDs[group])
 
     print('Team\tProduction Errors Past Year')
     for group in sorted(group_phids, key=group_phids.get, reverse=True):
