@@ -1,0 +1,371 @@
+[{
+  "id": 281392,
+  "type": "TASK",
+  "phid": "PHID-TASK-uf7532ub3geweif76ofz",
+  "fields": {
+    "name": "pipeline-promote: Add patch author as reviewer to promote patch",
+    "description": {
+      "raw": "The author or submitter of a patch that would need promoting in deployment charts doesn't get a notification that a patch has been created. Add the author and the submitter as a reviewer to the promote patch that gets created for deployment-charts."
+    },
+    "authorPHID": "PHID-USER-mwsit7ctrdqkafpepcll",
+    "ownerPHID": null,
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 90,
+      "name": "Needs Triage",
+      "color": "violet"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1619631040,
+    "dateModified": 1619631468,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 281391,
+  "type": "TASK",
+  "phid": "PHID-TASK-7b2yrqfudxlh6bpemtsy",
+  "fields": {
+    "name": "Add local-charts to mw-cli",
+    "description": {
+      "raw": "Add a new subcommand to mw-cli to install and deploy local-charts to minikube"
+    },
+    "authorPHID": "PHID-USER-mwsit7ctrdqkafpepcll",
+    "ownerPHID": null,
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 90,
+      "name": "Needs Triage",
+      "color": "violet"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1619630721,
+    "dateModified": 1619631465,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 240484,
+  "type": "TASK",
+  "phid": "PHID-TASK-abhcl5ubd66tck5lotom",
+  "fields": {
+    "name": "Explore tools for remote pairing",
+    "description": {
+      "raw": "Per discussion at the recent EngProd offsite, Dan and Brennen to pair on tooling for remote pairing that goes beyond \"share a screen/window over Google Meet\"."
+    },
+    "authorPHID": "PHID-USER-6diqh4qmtrnqf3b2tkip",
+    "ownerPHID": "PHID-USER-6diqh4qmtrnqf3b2tkip",
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 90,
+      "name": "Needs Triage",
+      "color": "violet"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1576088142,
+    "dateModified": 1619631216,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 245184,
+  "type": "TASK",
+  "phid": "PHID-TASK-jd32du4qx363anju7kte",
+  "fields": {
+    "name": "Automate scap prep",
+    "description": {
+      "raw": "Automate Heterogenous train step 2 that is run on the deployment host: https://wikitech.wikimedia.org/wiki/Heterogeneous_deployment/Train_deploys#Clone_new_branch"
+    },
+    "authorPHID": "PHID-USER-5ewyncd6mpezaymyxfal",
+    "ownerPHID": null,
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 50,
+      "name": "Medium",
+      "color": "orange"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1581620060,
+    "dateModified": 1619631449,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 225335,
+  "type": "TASK",
+  "phid": "PHID-TASK-d4hcmedbbt6y2kufgtd6",
+  "fields": {
+    "name": "Implement pipeline config validation",
+    "description": {
+      "raw": "In its current implementation, pipelinelib will likely throw obscure errors if `.pipeline/config.yaml` contains incorrect structure or values. We should implement a basic validation system that can throw human understandable errors congruent with [[ https://doc.wikimedia.org/pipelinelib/org/wikimedia/integration/PipelineStage.html | existing PipelineStage documentation ]] and, even better, user-facing documentation once that is written."
+    },
+    "authorPHID": "PHID-USER-7bifphmxtcqgvdofuzla",
+    "ownerPHID": null,
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 50,
+      "name": "Medium",
+      "color": "orange"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1559952888,
+    "dateModified": 1619631329,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 279051,
+  "type": "TASK",
+  "phid": "PHID-TASK-q75h7lvj6fk4kiz4ghtd",
+  "fields": {
+    "name": "Add tooling to pgp-public-keys.git to make using and maintaining it easier",
+    "description": {
+      "raw": "Part of the work will be to figure out what'd be useful and what's  needed to achieve that."
+    },
+    "authorPHID": "PHID-USER-bmvrkz7eh5ze2bfej7nc",
+    "ownerPHID": "PHID-USER-bmvrkz7eh5ze2bfej7nc",
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 25,
+      "name": "Low",
+      "color": "yellow"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1617275924,
+    "dateModified": 1619630936,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+},
+{
+  "id": 250095,
+  "type": "TASK",
+  "phid": "PHID-TASK-2f2f4kgxmux76d6itfkn",
+  "fields": {
+    "name": "branch.py: Convert deleted wmf branches to tags",
+    "description": {
+      "raw": "On T244368, we added deletion of old wmf branches in [[https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/tools/release/+/master/delete-wmf-branches/|mediawiki/tools/release/delete-wmf-branches]].\n\nThis has since been superseded by @mmodell's e641ec26 - \"Add the very dangerous --delete argument to mass delete branches\" in [[https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/tools/release/+/e641ec26ad9428eb56f36caeea3ff49a313e42fa/make-release/branch.py|branch.py]].\n\nThat feature should additionally do the equivalent of `git merge-base` to find a branch point and tag releases (or at least a close approximation) before deleting the branch, so that users and tooling can reference it without the costs of keeping the `wmf/*` branches around indefinitely.\n\nPairing with Tyler today yielded a gitiles URL:\n\nhttps://gerrit.wikimedia.org/g/mediawiki/core/+log/master%5E%5E..wmf/1.35.0-wmf.30?format=JSON&no-merges&reverse&n=1\n\nFinding the parent of that commit should be equivalent to `merge-base`."
+    },
+    "authorPHID": "PHID-USER-6diqh4qmtrnqf3b2tkip",
+    "ownerPHID": null,
+    "status": {
+      "value": "open",
+      "name": "Open",
+      "color": null
+    },
+    "priority": {
+      "value": 25,
+      "name": "Low",
+      "color": "yellow"
+    },
+    "points": null,
+    "subtype": "default",
+    "closerPHID": null,
+    "dateClosed": null,
+    "spacePHID": "PHID-SPCE-6l6g5p53yi3mypnlpxjw",
+    "dateCreated": 1586795358,
+    "dateModified": 1619658446,
+    "policy": {
+      "view": "public",
+      "interact": "public",
+      "edit": "users"
+    },
+    "custom.deadline.due": null,
+    "custom.train.status": null,
+    "custom.train.backup": null,
+    "custom.external_reference": null,
+    "custom.release.version": null,
+    "custom.release.date": null,
+    "custom.security_topic": "default",
+    "custom.risk.summary": null,
+    "custom.risk.impacted": null,
+    "custom.risk.rating": null,
+    "custom.requestor.affiliation": null,
+    "custom.error.reqid": null,
+    "custom.error.stack": null,
+    "custom.error.url": null,
+    "custom.error.id": null,
+    "custom.points.final": null,
+    "custom.deadline.start": null
+  },
+  "attachments": []
+}]
